@@ -24,7 +24,7 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 - As a user, you can search for the meaning of unfamiliar words.
 - As a user, you can add unfamiliar words to your personal wordbooks.
 - As a user, you can delete words from your wordbooks.
-- As a user, you can customize the types of wordbooks, such as Medical, Architecture, Computing, Daily, or Unfamiliar, etc.
+- As a user, you can customize or delete the types of wordbooks, such as Medical, Architecture, Computing, Daily, or Unfamiliar, etc.
 - As a user, you can modify the category of a word.
 
 #### Stretch Goals
