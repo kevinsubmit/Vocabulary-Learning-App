@@ -23,13 +23,17 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 - As a user, you have the functions to register, log in, and log out.
 - As a user, you can search for the meaning of unfamiliar words.
 - As a user, you can add unfamiliar words to your personal wordbooks.
-- IAs a user, you can delete words from your wordbooks.
+- As a user, you can delete words from your wordbooks.
 - As a user, you can customize the types of wordbooks, such as Medical, Architecture, Computing, Daily, or Unfamiliar, etc.
 - As a user, you can modify the category of a word.
 
 #### Stretch Goals
 
 - As a user, you can see how many users have bookmarked the word
+
+## Data modeling and ERD
+
+
 
 
 #### Notionboard Template
@@ -47,7 +51,7 @@ Do not neglect to plan, you will thank yourself later for being proactive!
 | Day        |   | Task                               | Blockers | Notes/ Thoughts |
 |------------|---|------------------------------------|----------|-----------------|
 | Thursday   |   | Think and Create proposal          |          |about application|
-| Friday     |   | Finish proposal and Schema         |          |create template  |
+| Friday     |   | Finish proposal                    |          |create template  |
 | Monday     |   | Finish defining cons vars funs     |          |js variablles    |
 | Tuesday    |   | Finish static webpages             |          |main  webpages   |
 | Wesnesday  |   | Continue writing  static webpages  |          |                 |
@@ -55,6 +59,10 @@ Do not neglect to plan, you will thank yourself later for being proactive!
 | Friday     |   | Install the main framework         |          |such as express  |
 | Monday     |   | Writing main logic                 |          |link the frontend|
 | Tuesday    |   | Testing the program myself         |          |cheak again      |
+
+
+
+
 
 
 
