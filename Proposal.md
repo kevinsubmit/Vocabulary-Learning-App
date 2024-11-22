@@ -42,10 +42,10 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 |  Index     |   ‘/users/:userId/words’               |  GET     |
 |  New       |   ‘/users/:userId/words/new’           |  GET     |
 |  Create    |   ‘/users/:userId/words’               |  POST    |    
-|  Show      |   ‘/users/:userId/words/:itemId’       |  GET     |            
-|  Edit      |   ‘/users/:userId/words/:itemId/edit’  |  GET     |  
-|  Update    |   ‘/users/:userId/words/:itemId’       |  PUT     |                       
-|  Delete    |   ‘/users/:userId/words/:itemId’       |  DELETE  |                         
+|  Show      |   ‘/users/:userId/words/:wordId’       |  GET     |            
+|  Edit      |   ‘/users/:userId/words/:wordId/edit’  |  GET     |  
+|  Update    |   ‘/users/:userId/words/:wordId’       |  PUT     |                       
+|  Delete    |   ‘/users/:userId/words/:wordId’       |  DELETE  |                         
 
 
 #### Notionboard Template
