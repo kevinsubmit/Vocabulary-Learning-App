@@ -33,7 +33,7 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 
 ## Data modeling and ERD
 
-![image]()
+![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/utils/imgs/erd.png)
 
 ## RESTful routes for managing data
 
