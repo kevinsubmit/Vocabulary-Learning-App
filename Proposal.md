@@ -54,7 +54,7 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 |  Collect   |   ‘/users/:userId/words/:wordbookId/collect'       |  POST      |  (这个时候往数据库生成这个wordId) |
 |  Collect   |   ‘/users/:userId/words/:wordId'                   |  GET       |  (这个页面是带收藏标志的)         |
 |  Remove    |   ‘/users/:userId/words/:wordId/wordbookId/remove’ |  DELETE    |                               |
- 
+
 
 #### Notionboard Template
 Notionboard template for building projects ( You can use this for any project )
@@ -77,7 +77,7 @@ Do not neglect to plan, you will thank yourself later for being proactive!
 | Wesnesday  |   | Continue writing  static webpages  |          |                 |
 | Thursday   |   | Finish defining cons vars funs     |          |                 |
 | Friday     |   | Install the main framework         |          |                 |
-| Monday     |   | Writing main logic                 |          |link the frontend|
+| Monday     |   | Writing main logic                 |          |                 |
 | Tuesday    |   | Testing the program myself         |          |cheak again      |
 
 
