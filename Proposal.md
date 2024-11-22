@@ -37,23 +37,34 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 
 ## RESTful routes for managing data
 
-|  Action    |             Route                            | HTTP Verb|
-|------------|----------------------------------------------|----------|
-|  Index     |   ‘/users/:userId/wordbooks’                 |  GET     |
-|  New       |   ‘/users/:userId/wordbooks/new’             |  GET     |
-|  Create    |   ‘/users/:userId/wordbooks’                 |  POST    |    
-|  Show      |   ‘/users/:userId/wordbooks/:wordbookId'     |  GET     |            
-|  Edit      |   ‘/users/:userId/wordbooks/:wordbookId/edit’|  GET     |  
-|  Update    |   ‘/users/:userId/wordbooks/:wordbookId’     |  PUT     |                       
-|  Delete    |   ‘/users/:userId/wordbooks/:wordbookId’     |  DELETE  |  
+|  Action    |             Route                                  | HTTP Verb  | 
+|------------|----------------------------------------------------|------------|
+|  Register  |   ‘/register’                                      |    GET     |  
+|  Register  |   ‘/auth/register’                                 |    POST    |
+|  Login     |   ‘/login.ejs’                                     |    GET     |  
+|  Login     |   ‘/auth/register’                                 |    POST    |  
+|  Logout    |   ‘/login.ejs’                                     |    GET     | 
+|  Logout    |   ‘/auth/logout'                                   |    POST    | 
+ 
+
+|  Action    |             Route              | HTTP Verb|
+|------------|--------------------------------|----------|
+|  Index     |   ‘/wordbooks’                 |  GET     |
+|  New       |   ‘/wordbooks/new’             |  GET     |
+|  Create    |   ‘/wordbooks’                 |  POST    |    
+|  Show      |   ‘/wordbooks/:wordbookId'     |  GET     |            
+|  Edit      |   ‘/wordbooks/:wordbookId/edit’|  GET     |  
+|  Update    |   ‘/wordbooks/:wordbookId’     |  PUT     |                       
+|  Delete    |   ‘/wordbooks/:wordbookId’     |  DELETE  |  
 
 
-|  Action    |             Route                                  | HTTP Verb  |           Note                |
-|------------|----------------------------------------------------|------------|-------------------------------|
-|  Search    |   ‘/users/:userId/words’                           |  POST(api) |  (这个页面不带收藏标志的)         |
-|  Collect   |   ‘/users/:userId/words/:wordbookId/collect'       |  POST      |  (这个时候往数据库生成这个wordId) |
-|  Collect   |   ‘/users/:userId/words/:wordId'                   |  GET       |  (这个页面是带收藏标志的)         |
-|  Remove    |   ‘/users/:userId/words/:wordId/wordbookId/remove’ |  DELETE    |                               |
+|  Action    |             Route                                  | HTTP Verb  |           Note  |
+|------------|----------------------------------------------------|------------|-----------------|
+|  Search    |   ‘/words’                           |  POST(api) |  (这个页面不带收藏标志的)         |
+|  Collect   |   ‘/words/:wordbookId'               |  POST      |  (这个时候往数据库生成这个wordId) |
+|  Collect   |   ‘/words/:wordId'                   |  GET       |  (这个页面是带收藏标志的)         |
+|  Remove    |   ‘/words/:wordId/wordbookId/remove’ |  DELETE    |                               |
+
 
 
 #### Notionboard Template
