@@ -41,9 +41,9 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 |------------|----------------------------------------------------|------------|
 |  Register  |   ‘/register’                                      |    GET     |  
 |  Register  |   ‘/auth/register’                                 |    POST    |
-|  Login     |   ‘/login.ejs’                                     |    GET     |  
+|  Login     |   ‘/login’                                         |    GET     |  
 |  Login     |   ‘/auth/register’                                 |    POST    |  
-|  Logout    |   ‘/login.ejs’                                     |    GET     | 
+|  Logout    |   ‘/login’                                         |    GET     | 
 |  Logout    |   ‘/auth/logout'                                   |    POST    | 
  
 
