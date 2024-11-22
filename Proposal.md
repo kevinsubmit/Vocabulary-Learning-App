@@ -37,16 +37,24 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 
 ## RESTful routes for managing data
 
-|  Action    |             Route                      | HTTP Verb|
-|------------|----------------------------------------|----------|
-|  Index     |   ‘/users/:userId/words’               |  GET     |
-|  New       |   ‘/users/:userId/words/new’           |  GET     |
-|  Create    |   ‘/users/:userId/words’               |  POST    |    
-|  Show      |   ‘/users/:userId/words/:wordId’       |  GET     |            
-|  Edit      |   ‘/users/:userId/words/:wordId/edit’  |  GET     |  
-|  Update    |   ‘/users/:userId/words/:wordId’       |  PUT     |                       
-|  Delete    |   ‘/users/:userId/words/:wordId’       |  DELETE  |                         
+|  Action    |             Route                            | HTTP Verb|
+|------------|----------------------------------------------|----------|
+|  Index     |   ‘/users/:userId/wordbooks’                 |  GET     |
+|  New       |   ‘/users/:userId/wordbooks/new’             |  GET     |
+|  Create    |   ‘/users/:userId/wordbooks’                 |  POST    |    
+|  Show      |   ‘/users/:userId/wordbooks/:wordbookId'     |  GET     |            
+|  Edit      |   ‘/users/:userId/wordbooks/:wordbookId/edit’|  GET     |  
+|  Update    |   ‘/users/:userId/wordbooks/:wordbookId’     |  PUT     |                       
+|  Delete    |   ‘/users/:userId/wordbooks/:wordbookId’     |  DELETE  |  
 
+
+|  Action    |             Route                                  | HTTP Verb  |           Note                |
+|------------|----------------------------------------------------|------------|-------------------------------|
+|  Search    |   ‘/users/:userId/words’                           |  POST(api) |  (这个页面不带收藏标志的)         |
+|  Collect   |   ‘/users/:userId/words/:wordbookId/collect'       |  POST      |  (这个时候往数据库生成这个wordId) |
+|  Collect   |   ‘/users/:userId/words/:wordId'                   |  GET       |  (这个页面是带收藏标志的)         |
+|  Remove    |   ‘/users/:userId/words/:wordId/wordbookId/remove’ |  DELETE    |                               |
+ 
 
 #### Notionboard Template
 Notionboard template for building projects ( You can use this for any project )
@@ -64,11 +72,11 @@ Do not neglect to plan, you will thank yourself later for being proactive!
 |------------|---|------------------------------------|----------|-----------------|
 | Thursday   |   | Think and Create proposal          |          |about application|
 | Friday     |   | Finish proposal                    |          |create template  |
-| Monday     |   | Finish defining cons vars funs     |          |js variablles    |
+| Monday     |   | Implement the backend schema       |          |js variablles    |
 | Tuesday    |   | Finish static webpages             |          |main  webpages   |
 | Wesnesday  |   | Continue writing  static webpages  |          |                 |
-| Thursday   |   | Implement the backend schema       |          |such as serser   |
-| Friday     |   | Install the main framework         |          |such as express  |
+| Thursday   |   | Finish defining cons vars funs     |          |                 |
+| Friday     |   | Install the main framework         |          |                 |
 | Monday     |   | Writing main logic                 |          |link the frontend|
 | Tuesday    |   | Testing the program myself         |          |cheak again      |
 
