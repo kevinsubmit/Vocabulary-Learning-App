@@ -39,11 +39,11 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 
 |  Action    |             Route                                  | HTTP Verb  | 
 |------------|----------------------------------------------------|------------|
-|  Register  |   ‘/register’                                      |    GET     |  
+|  Register  |   ‘/auth/register’                                 |    GET     |  
 |  Register  |   ‘/auth/register’                                 |    POST    |
-|  Login     |   ‘/login’                                         |    GET     |  
+|  Login     |   ‘/auth/login’                                    |    GET     |  
 |  Login     |   ‘/auth/register’                                 |    POST    |  
-|  Logout    |   ‘/login’                                         |    GET     | 
+|  Logout    |   ‘/auth/login’                                    |    GET     | 
 |  Logout    |   ‘/auth/logout'                                   |    POST    | 
  
 
