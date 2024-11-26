@@ -20,7 +20,7 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 
 #### MVP Goals
 
-- As a user, you have the functions to register, log in, and log out.
+- As a user, you have the functions to login, log in, and log out.
 - As a user, you can search for the meaning of unfamiliar words.
 - As a user, you can add unfamiliar words to your personal wordbooks.
 - As a user, you can remove words from your wordbooks.
@@ -39,10 +39,10 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 
 |  Action    |             Route                                  | HTTP Verb  | 
 |------------|----------------------------------------------------|------------|
-|  Register  |   ‘/register’                                      |    GET     |  
-|  Register  |   ‘/auth/register’                                 |    POST    |
+|  login  |   ‘/login’                                      |    GET     |  
+|  login  |   ‘/auth/login’                                 |    POST    |
 |  Login     |   ‘/login’                                         |    GET     |  
-|  Login     |   ‘/auth/register’                                 |    POST    |  
+|  Login     |   ‘/auth/login’                                 |    POST    |  
 |  Logout    |   ‘/login’                                         |    GET     | 
 |  Logout    |   ‘/auth/logout'                                   |    POST    | 
  

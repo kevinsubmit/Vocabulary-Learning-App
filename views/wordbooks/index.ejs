@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My wordbooks</title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <a href="/wordbooks/new">Add new wordbooks</a>
+    <h1>my wordbooks</h1>
+    <% if(wordbooks.length !== 0) { %>
+    <ul>
+      <% wordbooks.forEach((wordbook)=>{ %>
+      <li>
+        <span> <%= wordbook.category %> </span>
+        <span> <%= wordbook.wordAmount %> </span>
+        <form
+          action="/wordbooks/<%= wordbook._id %>?_method=DELETE"
+          method="POST"
+        >
+          <!-- Hidden field to simulate DELETE method -->
+          <input type="hidden" name="_method" value="DELETE" />
+          <button type="submit">Delete</button>
+        </form>
+
+        <!-- Hidden field to simulate PUT method -->
+        <form action="/wordbooks/<%= wordbook._id %>/edit" method="GET">
+          <button type="submit">Edit</button>
+        </form>
+
+        
+      </li>
+      <% }) %>
+    </ul>
+    <% } else { %>
+    <p>There are no items in this wordbooks</p>
+    <% } %>
+  </body>
+</html>

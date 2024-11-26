@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+  </head>
+  <body>
+    <body>
+      <%- include('./partials/_navbar.ejs') %>
+
+      <form action="/words" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required />
+      
+        <% wordbooks.forEach((wordbook) => { %>
+          <!-- user uniqued id -->
+          <label for="wordbook-<%= wordbook._id %>"><%= wordbook.category %></label>
+          <input type="radio" id="wordbook-<%= wordbook._id %>" name="options" value="<%= wordbook._id %>" />
+        <% }) %>
+      
+        <button type="submit">Add</button>
+      </form>
+      
+    </body>
+  </body>
+</html>
