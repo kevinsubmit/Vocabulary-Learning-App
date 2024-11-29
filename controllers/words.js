@@ -1,8 +1,7 @@
-
 import express from "express";
 const router = express.Router();
+import mongoose from 'mongoose';
 import { User, Word, Wordbook } from "../models/models.js";
-import { name } from "ejs";
 
 // // view   get
 // router.get("/", async (req, res) => {
@@ -23,25 +22,90 @@ import { name } from "ejs";
 
 // create post
 router.post("/", async (req, res) => {
+
   try {
-
-    const wordName = req.body.name;
-    const word = new Word({
-      name: wordName,
-      favorite: 0,
-      wordbooks: [],
-    });
-    await word.save();
-
-
-
-    // push theis wordbook into the user's wordbooks  将这个 wordbook 添加到一个用户的 `wordbooks` 数组中
     const { _id } = req.session.user;
-    const user = await User.findOne({ _id: _id });
+    const user = await User.findById(_id);
+    const wordbook = await Wordbook.findById(req.body._id);
 
-    user.wordbooks.push(wordbook);
-    await user.save();
-    res.status(200).redirect("/wordbooks");
+    // 启动 Mongoose 事务 transaction
+  const session = await mongoose.startSession();
+  session.startTransaction();  // 开始事务
+
+  try {
+    // 创建新的 Word 并保存
+    const newWord = new Word({
+      name: req.body.name,
+      favorite: 0,
+    });
+
+    // 在事务中保存新单词
+    await newWord.save({ session });
+
+    // 更新 wordbook，添加新单词并更新 wordAmount
+    wordbook.words.push(newWord._id);
+    wordbook.wordAmount += 1;
+    await wordbook.save({ session });
+
+    // 更新新单词的 wordbooks 数组，关联到 wordbook
+    newWord.wordbooks.push(wordbook._id);
+    await newWord.save({ session });
+
+    // 确保 user 的 wordbooks 数组更新
+    const wordbookIndex = user.wordbooks.findIndex(wb => wb._id.toString() === wordbook._id.toString());
+    if (wordbookIndex !== -1) {
+      // 如果 `wordbook` 存在，更新其中的 `words` 和 `wordAmount`
+      user.wordbooks[wordbookIndex] = wordbook;  // 更新 wordbook
+    } else {
+      // 如果 `wordbook` 不在 `user.wordbooks` 中，可以选择将其添加
+      user.wordbooks.push(wordbook);
+    }
+
+    // 保存更新后的 user 数据
+    await user.save({ session });
+
+    // 提交事务
+    await session.commitTransaction();
+    res.status(200).redirect("/");
+
+  } catch (err) {
+    // 如果任何操作失败，回滚事务
+    await session.abortTransaction();
+    console.error("Transaction failed:", err);
+    res.status(500).send("Error processing your request.");
+  } finally {
+    // 结束事务会话
+    session.endSession();
+  }
+
+
+
+
+
+
+    
+
+    // //create new word and save  创建新的 Word并保存
+    // const newWord = new Word({
+    //   name: req.body.name,
+    //   favorite: 0,
+    // });
+    // await newWord.save();
+
+    // //push the new word to wordbook 将新单词添加到 Wordbook 中
+    // wordbook.words.push(newWord._id);
+    // wordbook.wordAmount += 1;
+    // await wordbook.save();
+   
+    
+    // //push the new word to his own wordbook  将新单词添加到 Word 的 wordbooks 数组
+    // newWord.wordbooks.push(wordbook._id);
+    // await newWord.save();
+
+    //  // update the user's data 更新用户的 Wordbook  word数据
+    // await user.save();
+
+    // res.status(200).redirect("/");
   } catch (error) {
     console.error(error);
     res.status(418).redirect("/");

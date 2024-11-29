@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My wordbooks</title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <% if(words.length !== 0) { %>
+    <ul>
+      <% words.forEach((word)=>{ %>
+      <li>
+        <span> <%= word.name %> </span>
+      </li>
+      <% }) %>
+    </ul>
+    <% } else { %>
+    <p>There are no words in this wordbook</p>
+    <% } %>
+  </body>
+</html>

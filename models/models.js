@@ -50,7 +50,6 @@ const wordSchema = mongoose.Schema({
  
 });
 
-
 const User     = mongoose.model('User', userSchema);
 const Wordbook = mongoose.model('Wordbook', wordbookSchema);
 const Word     = mongoose.model('Word', wordSchema);

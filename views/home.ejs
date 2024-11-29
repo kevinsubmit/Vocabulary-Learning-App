@@ -16,7 +16,7 @@
         <% wordbooks.forEach((wordbook) => { %>
           <!-- user uniqued id -->
           <label for="wordbook-<%= wordbook._id %>"><%= wordbook.category %></label>
-          <input type="radio" id="wordbook-<%= wordbook._id %>" name="options" value="<%= wordbook._id %>" />
+          <input type="radio" id="wordbook-<%= wordbook._id %>" name="_id" value="<%= wordbook._id %>" />
         <% }) %>
       
         <button type="submit">Add</button>
