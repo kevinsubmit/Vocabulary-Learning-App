@@ -79,7 +79,7 @@
   <body>
     <%- include('../partials/_navbar.ejs') %>
     <div id="word">
-      <h3>Words list</h3>
+      <h3>Words (<%= totalNumber %>)</h3>
       <div class="word-list">
         <% if (words.length !== 0) { %>
         <ul>
@@ -97,10 +97,6 @@
           </li>
           <% }) %>
         </ul>
-        <% } else { %>
-        <p>There are no words in this wordbook</p>
-        <% } %>
-
         <!-- Pagination Controls -->
         <div class="pagination">
           <!-- First page link -->
@@ -131,6 +127,11 @@
             >Last</a
           >
         </div>
+        <% } else { %>
+        <p>There are no words in this wordbook</p>
+        <% } %>
+
+        
       </div>
     </div>
   </body>

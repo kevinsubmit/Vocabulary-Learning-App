@@ -1,8 +1,17 @@
+<!-- bottom nav -->
 <nav>
   <a href="/">Home</a>
   <a href="/words/search">Search</a>
-  <a href="/auth/sign-out">Sign Out</a>
+  <a href="/wordbooks">Wordbooks</a>
 </nav>
+
+<!-- right ignout -->
+<div id="signOutContainer">
+  <button id="signOutToggle">▶</button>
+  <div id="signOutMenu">
+    <a href="/auth/sign-out">Sign Out</a>
+  </div>
+</div>
 <style>
   nav {
     position: fixed;
@@ -17,7 +26,7 @@
     align-items: center;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
   }
-  a{
+  a {
     text-decoration: none;
   }
   nav a {
@@ -26,5 +35,69 @@
     padding: 10px 15px;
     transition: background-color 0.3s;
   }
+  #signOutContainer {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  /* 退出按钮（默认情况下仅显示箭头） */
+  #signOutToggle {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.3s;
+  }
+
+  /* 退出菜单（默认隐藏） */
+  #signOutMenu {
+    display: none;
+    background-color: #202d38;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  /* 退出链接样式 */
+  #signOutMenu a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  /* 当按钮被点击时，菜单显示 */
+  #signOutMenu.show {
+    display: block;
+  }
+
+  /* 动画效果 - 展开/收起箭头 */
+  #signOutToggle.rotate {
+    transform: rotate(90deg);
+  }
 </style>
+<script>
+  document
+    .getElementById("signOutToggle")
+    .addEventListener("click", function () {
+      // 切换菜单显示状态
+      const menu = document.getElementById("signOutMenu");
+      const button = document.getElementById("signOutToggle");
+
+      // 如果菜单已经显示，则隐藏；如果未显示，则显示
+      menu.classList.toggle("show");
+
+      // 同时切换箭头的旋转状态
+      button.classList.toggle("rotate");
+    });
+</script>

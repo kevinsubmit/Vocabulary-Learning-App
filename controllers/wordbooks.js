@@ -172,6 +172,8 @@ router.get("/:wordbookId/list", async (req, res) => {
     if (!wordbook) {
       return res.status(404).send("Wordbook not found");
     }
+    // 总条数
+    const totalNumber = wordbook.words.length;
 
     // 获取当前页码，默认为第1页
     const page = parseInt(req.query.page) || 1;
@@ -190,6 +192,7 @@ router.get("/:wordbookId/list", async (req, res) => {
       currentPage: page,
       totalPages,
       wordbookId,
+      totalNumber
     });
   } catch (error) {
     console.error(error);
@@ -254,10 +257,5 @@ router.delete("/:wordbookId/:wordId", async (req, res) => {
     session.endSession();
   }
 });
-
-
-
-
-
 
 export default router;
