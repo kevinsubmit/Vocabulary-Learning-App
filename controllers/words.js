@@ -70,14 +70,26 @@ router.post("/", async (req, res) => {
   }
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
 // delete
-router.delete("/:wordbookId", async (req, res) => {
+router.delete("/:wordId", async (req, res) => {
   try {
-    const wordbookId = req.params.wordbookId;
+    const wordId = req.params.wordId;
     const { _id } = req.session.user;
     const todoUser = await User.findById(_id);
 
-    todoUser.wordbooks.id(wordbookId).deleteOne();
+    todoUser.wordbooks.id(wordId).deleteOne();
     await todoUser.save();
     res.status(200).redirect("/wordbooks");
   } catch (error) {

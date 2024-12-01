@@ -1,5 +1,6 @@
 import express from "express";
 const router = express.Router();
+import mongoose from 'mongoose';
 import { User, Wordbook, Word } from "../models/models.js";
 
 // view   get
@@ -23,10 +24,12 @@ router.post("/search", async (req, res) => {
   try {
     const { _id } = res.locals.user;
     const todoUser = await User.findById(_id);
-    res.json( {wordbooks: todoUser.wordbooks });
+    res.json({ wordbooks: todoUser.wordbooks });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "An error occurred while processing your request" });
+    res
+      .status(500)
+      .json({ error: "An error occurred while processing your request" });
   }
 });
 
@@ -70,14 +73,14 @@ router.post("/", async (req, res) => {
   }
 });
 
-// delete
+// delete one wordbook 
 router.delete("/:wordbookId", async (req, res) => {
   try {
     const { wordbookId } = req.params;
     const { _id } = req.session.user;
     const todoUser = await User.findById(_id);
     const wordbook = todoUser.wordbooks.id(wordbookId);
-  
+
     // 遍历该 wordbook 中的每个 word，处理其在 wordbooks 中的引用
     for (let wordId of wordbook.words) {
       const word = await Word.findById(wordId);
@@ -154,7 +157,7 @@ router.put("/:wordbookId", async (req, res) => {
   }
 });
 
-// wordbookList view   get
+// wordbook word list view   get
 router.get("/:wordbookId/list", async (req, res) => {
   try {
     const { wordbookId } = req.params;
@@ -162,18 +165,99 @@ router.get("/:wordbookId/list", async (req, res) => {
     const wordbook = await Wordbook.findById(wordbookId)
       .populate({
         path: "words", // 填充 words 字段，关联到 Word 模型
-        select: "name", // 可以选择你需要返回的字段
+        select: "name", // 只选择返回 name 字段
       })
       .exec();
 
     if (!wordbook) {
       return res.status(404).send("Wordbook not found");
     }
-    res.render("wordbooks/list.ejs", { words: wordbook.words });
+
+    // 获取当前页码，默认为第1页
+    const page = parseInt(req.query.page) || 1;
+    const pageSize = 1; // 每页展示20个单词
+    const skip = (page - 1) * pageSize; // 跳过的记录数
+
+    // 获取当前页的 wordbook.words 数组切片
+    const words = wordbook.words.slice(skip, skip + pageSize);
+
+    // 计算总页数
+    const totalWords = wordbook.words.length;
+    const totalPages = Math.ceil(totalWords / pageSize);
+
+    res.render("words/list.ejs", {
+      words,
+      currentPage: page,
+      totalPages,
+      wordbookId,
+    });
   } catch (error) {
     console.error(error);
-    res.status(418).redirect("/");
+    res.status(500).send("Server Error");
   }
 });
+
+//delete one word  from one wordbook /use transaction
+router.delete("/:wordbookId/:wordId", async (req, res) => {
+  const { wordbookId, wordId } = req.params;
+  const { _id } = req.session.user;
+
+  // 开始事务
+  const session = await mongoose.startSession();
+  session.startTransaction();
+
+  try {
+    // Step 1: 从 Wordbook 中删除对应的 wordId 引用
+    const wordbook = await Wordbook.findById(wordbookId).session(session);
+    if (!wordbook) {
+      throw new Error("Wordbook not found");
+    }
+
+    // 移除 wordId 在 wordbook 的 words 数组中的引用
+    wordbook.words.pull(wordId);
+    await wordbook.save({ session });
+
+    // Step 2: 删除 Word 表中对应的单词
+    const word = await Word.findById(wordId).session(session);
+    if (!word) {
+      throw new Error("Word not found");
+    }
+
+    await word.deleteOne({ session });
+
+    // Step 3: 更新 User 表，移除已删除的 wordbook 中的 wordId
+    const user = await User.findById(_id).session(session);
+    if (user) {
+      const wordbookIndex = user.wordbooks.findIndex(wb => wb._id.toString() === wordbookId);
+      if (wordbookIndex > -1) {
+        const wordIndex = user.wordbooks[wordbookIndex].words.indexOf(wordId);
+        if (wordIndex > -1) {
+          // 从 User 的 wordbook 中移除 wordId
+          user.wordbooks[wordbookIndex].words.splice(wordIndex, 1);
+        }
+        await user.save({ session });
+      }
+    }
+
+    // 提交事务
+    await session.commitTransaction();
+
+    // 返回成功响应
+    res.status(200).redirect(`/wordbooks/${wordbookId}/list`);
+  } catch (error) {
+    // 事务回滚
+    await session.abortTransaction();
+    console.error("Error during delete operation:", error);
+    res.status(500).json({ message: error.message || "Internal server error" });
+  } finally {
+    // 结束会话
+    session.endSession();
+  }
+});
+
+
+
+
+
 
 export default router;
