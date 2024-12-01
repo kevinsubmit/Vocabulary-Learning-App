@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        background-color: #f0f0f0;
+        padding-top: 20px;
+        box-sizing: border-box;
+        background-color: #202d38;
+      }
+      .search-area {
+        height: 100%;
+      }
+      .search-area .input-area {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 90%;
+        margin: 0 auto;
+      }
+      .search-area .input-area p {
+        background-color: #283540;
+        display: flex;
+        align-items: center;
+        height: 40px;
+        width: 77%;
+        border-radius: 10px;
+        padding-left: 5px;
+      }
+      .search-area .input-area p input {
+        width: 80%;
+        height: 40px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: white;
+        caret-color: #007bff;
+        padding-left: 5px;
+        font-size: 14px;
+      }
+      .search-area .input-area button {
+        width: 64px;
+        height: 25px;
+        background-color: #007bff;
+        border-radius: 20px;
+        outline: none;
+        border: none;
+        color: white;
+      }
+      .search-area #contain-area {
+        height: 40px;
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 20px;
+        padding: 0 5px;
+      }
+      .search-area #display {
+        color: #007bff;
+        font-size: 16px;
+      }
+
+      #overlay {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.3);
+        color: white;
+        text-align: center;
+
+        box-sizing: border-box;
+        z-index: 1000;
+      }
+      #overlay .list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+      }
+      #overlay .list p {
+        display: flex;
+        align-items: center;
+      }
+      .wordbooks-list a {
+        color: #007bff;
+      }
+      .wordbooks-list span {
+        margin-left: 5px;
+      }
+      .overlay-contain {
+        position: fixed;
+        width: 100%;
+        height: 50%;
+        bottom: 0px;
+        left: 0px;
+        background-color: #202d38;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .close-btn {
+        position: absolute;
+        top: 0px;
+        right: 20px;
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    
+    </style>
+  </head>
+
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <div class="search-area">
+      <div class="input-area">
+        <p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            style="color: grey"
+            class="bi bi-search"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+            />
+          </svg>
+          <input
+            placeholder="input the word you wanna search"
+            id="wordSearch"
+            type="text"
+          />
+        </p>
+        <button
+          onclick="translateText(document.getElementById('wordSearch').value)"
+        >
+          Search
+        </button>
+      </div>
+      <div id="contain-area">
+        <p id="display"></p>
+        <p id="collect">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            style="color: grey"
+            class="bi bi-bookmark-star"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"
+            />
+            <path
+              d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"
+            />
+          </svg>
+        </p>
+      </div>
+    </div>
+
+    <div id="overlay">
+      <div class="overlay-contain">
+        <button class="close-btn" onclick="closeOverlay()">×</button>
+        <div class="wordbooks-list"></div>
+      </div>
+    </div>
+
+    <script>
+      const apiKey = "<%= apiKey %>";
+      const apiURL = "<%= apiURL %>";
+
+      // send request to Translate api
+      async function translateText(text, targetLang = "ZH") {
+        try {
+          if (!text) {
+            alert('Please input the word in the left area');
+            return false;
+          }
+          const response = await axios.post(apiURL, null, {
+            params: {
+              auth_key: apiKey,
+              text: text,
+              target_lang: targetLang,
+            },
+          });
+          const result = response.data.translations[0].text;
+          if (result) {
+            const element = document.getElementById("contain-area");
+            const display = document.getElementById("display");
+            element.style.display = "flex";
+            display.innerHTML = result;
+          }
+        } catch (error) {
+          console.error("Error translating text:", error);
+        }
+      }
+
+      document
+        .getElementById("collect")
+        .addEventListener("click", async function () {
+          try {
+            // 发送 POST 请求，获取 wordbooks 数据
+            const response = await axios.post("/wordbooks/search", {});
+
+            // 检查是否返回了有效的 wordbooks 数据
+            if (response.data && response.data.wordbooks) {
+              const wordbooks = response.data.wordbooks;
+
+              // 获取动态生成内容的容器
+              const wordbooksList = document.querySelector(".wordbooks-list");
+              wordbooksList.innerHTML = ""; // 清空之前的内容
+
+              // 遍历 wordbooks 数据，动态生成 p 标签和 a 标签
+              wordbooks.forEach((wordbook) => {
+                // 创建新的 div.list 元素
+                const listElement = document.createElement("div");
+                listElement.classList.add("list");
+
+                // 创建 p 标签来显示 wordbook 的名称
+                const pElement = document.createElement("p");
+                pElement.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="color: white;" class="bi bi-journal-text" viewBox="0 0 16 16">
+            <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+          </svg>
+          <span>${wordbook.category}</span>
+        `;
+
+                // 将 p 标签添加到 list 元素中
+                listElement.appendChild(pElement);
+
+                // 创建 a 标签作为按钮
+                const aElement = document.createElement("a");
+                aElement.href = "javascript:void(0);";
+                aElement.innerText = "Add to Wordbook";
+
+                // 给 a 标签添加点击事件监听
+                aElement.addEventListener("click", function () {
+                  // 获取 display 区域的内容作为 name 参数
+                  const name = document.getElementById("wordSearch").value;
+                  const wordbookId = wordbook._id; // 获取当前 wordbook 的 _id
+
+                  // 发送 POST 请求
+                  axios
+                    .post("/words", {
+                      name: name,
+                      id: wordbookId,
+                    })
+                    .then((response) => {
+                      closeOverlay();
+                      alert(response.data);
+                    })
+                    .catch((error) => {
+                      alert(error);
+                    });
+                });
+
+                // 将 a 标签添加到 list 元素中
+                listElement.appendChild(aElement);
+
+                // 将整个 listElement 添加到 wordbooksList 中
+                wordbooksList.appendChild(listElement);
+              });
+
+              // 显示遮罩层
+              document.getElementById("overlay").style.display = "block";
+            } else {
+              console.error("Error: Wordbooks data is missing");
+            }
+          } catch (error) {
+            console.error("Error sending POST request:", error);
+          }
+        });
+
+      // 关闭遮罩层的功能
+      function closeOverlay() {
+        document.getElementById("overlay").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

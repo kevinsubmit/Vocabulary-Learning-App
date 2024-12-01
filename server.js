@@ -16,16 +16,17 @@ import wordsController from "./controllers/words.js";
 import { User } from "./models/models.js";
 
 const port = process.env.PORT ? process.env.PORT : "3000";
-
 mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(morgan('dev'));
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -41,7 +42,7 @@ app.get("/", async (req, res) => {
     const user = await User.findById(_id);
     res.render("home.ejs",{wordbooks:user.wordbooks})
   }else{
-    res.render("index.ejs")
+    res.render("auth/login.ejs")
   }
 });
 

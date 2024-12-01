@@ -19,6 +19,17 @@ router.get("/new", (req, res) => {
   res.render("new.ejs");
 });
 
+router.post("/search", async (req, res) => {
+  try {
+    const { _id } = res.locals.user;
+    const todoUser = await User.findById(_id);
+    res.json( {wordbooks: todoUser.wordbooks });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred while processing your request" });
+  }
+});
+
 // create post
 router.post("/", async (req, res) => {
   try {

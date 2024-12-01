@@ -3,30 +3,17 @@ const router = express.Router();
 import mongoose from 'mongoose';
 import { User, Word, Wordbook } from "../models/models.js";
 
-// // view   get
-// router.get("/", async (req, res) => {
-//   try {
-//     const { _id } = res.locals.user;
-//     const todoUser = await User.findById(_id);
-
-//     res.render("wordbooks/index.ejs", { wordbooks: todoUser.wordbooks });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(418).redirect("/");
-//   }
-// });
-
-// router.get("/new", (req, res) => {
-//   res.render("new.ejs");
-// });
+// search   get
+router.get("/search", (req, res) => {
+  res.render("words/index.ejs",{apiKey:process.env.apiKey,apiURL:process.env.apiURL});
+});
 
 // create post
 router.post("/", async (req, res) => {
-
   try {
     const { _id } = req.session.user;
     const user = await User.findById(_id);
-    const wordbook = await Wordbook.findById(req.body._id);
+    const wordbook = await Wordbook.findById(req.body.id);
 
     // 启动 Mongoose 事务 transaction
   const session = await mongoose.startSession();
@@ -66,49 +53,20 @@ router.post("/", async (req, res) => {
 
     // 提交事务
     await session.commitTransaction();
-    res.status(200).redirect("/");
+    res.status(200).send("Successfully added");
 
   } catch (err) {
     // 如果任何操作失败，回滚事务
     await session.abortTransaction();
     console.error("Transaction failed:", err);
-    res.status(500).send("Error processing your request.");
+    res.status(500).send("Error processing your request");
   } finally {
     // 结束事务会话
     session.endSession();
   }
-
-
-
-
-
-
-    
-
-    // //create new word and save  创建新的 Word并保存
-    // const newWord = new Word({
-    //   name: req.body.name,
-    //   favorite: 0,
-    // });
-    // await newWord.save();
-
-    // //push the new word to wordbook 将新单词添加到 Wordbook 中
-    // wordbook.words.push(newWord._id);
-    // wordbook.wordAmount += 1;
-    // await wordbook.save();
-   
-    
-    // //push the new word to his own wordbook  将新单词添加到 Word 的 wordbooks 数组
-    // newWord.wordbooks.push(wordbook._id);
-    // await newWord.save();
-
-    //  // update the user's data 更新用户的 Wordbook  word数据
-    // await user.save();
-
-    // res.status(200).redirect("/");
   } catch (error) {
     console.error(error);
-    res.status(418).redirect("/");
+    res.status(418).send("Error processing your request");
   }
 });
 
