@@ -10,16 +10,16 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 
 **Initial Landing View**
 
-![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/utils/imgs/img1.png)
+![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/public/imgs/img1.png)
 
-![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/utils/imgs/img4.png)
+![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/public/imgs/img4.png)
 
 **Results View**
 
 
-![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/utils/imgs/img2.png)
+![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/public/imgs/img2.png)
 
-![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/utils/imgs/img3.png)
+![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/public/imgs/img3.png)
 
 ## User Stories
 
@@ -38,7 +38,7 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 
 ## Data modeling and ERD
 
-![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/utils/imgs/erd.png)
+![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/public/imgs/erd.png)
 
 ## RESTful routes for managing data
 
