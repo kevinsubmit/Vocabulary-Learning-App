@@ -15,10 +15,9 @@ router.post("/", async (req, res) => {
     const user = await User.findById(_id);
     const wordbook = await Wordbook.findById(req.body.id);
 
-    // 启动 Mongoose 事务 transaction
+    // 启动 Mongoose 事务 transaction 
   const session = await mongoose.startSession();
-  session.startTransaction();  // 开始事务
-
+  session.startTransaction();  
   try {
     // 创建新的 Word 并保存
     const newWord = new Word({
@@ -65,82 +64,6 @@ router.post("/", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(418).send("Error processing your request");
-  }
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-// delete
-router.delete("/:wordId", async (req, res) => {
-  try {
-    const wordId = req.params.wordId;
-    const { _id } = req.session.user;
-    const todoUser = await User.findById(_id);
-
-    todoUser.wordbooks.id(wordId).deleteOne();
-    await todoUser.save();
-    res.status(200).redirect("/wordbooks");
-  } catch (error) {
-    console.error(error);
-    res.status(418).redirect("/");
-  }
-});
-
-// edit  view
-router.get("/:wordbookId/edit", async (req, res) => {
-  try {
-    const wordbookId = req.params.wordbookId;
-    const { _id } = req.session.user;
-    const todoUser = await User.findById(_id);
-    const wordbook = todoUser.wordbooks.id(wordbookId);
-    res.status(200).render("edit.ejs", { wordbook: wordbook });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Cannot load the edit form");
-  }
-});
-
-// update
-router.put("/:wordbookId", async (req, res) => {
-  try {
-    const { _id } = req.session.user;
-    const wordbookId = req.params.wordbookId;
-
-    const wordbook = await Wordbook.findById(wordbookId);
-
-    if (!wordbook) {
-      return res.status(404).send("Wordbook not found");
-    }
-
-    // update collection  Wordbook  category field
-    wordbook.category = req.body.category;
-    await wordbook.save();
-
-    const user = await User.findById(_id);
-    if (!user) {
-      return res.status(404).send("User not found");
-    }
-
-    // update collection  user  category field
-    const subwordbook = user.wordbooks.id(wordbookId);
-    if (subwordbook) {
-      subwordbook.category = req.body.category;
-      await user.save();
-    }
-    res.status(200).redirect("/wordbooks");
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Cannot load the edit form");
   }
 });
 

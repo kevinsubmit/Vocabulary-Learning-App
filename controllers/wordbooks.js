@@ -94,11 +94,11 @@ router.delete("/:wordbookId", async (req, res) => {
         }
       }
     }
-    // 2. 从 User 的 wordbooks 中删除该 Wordbook
+    // 从 User 的 wordbooks 中删除该 Wordbook
     todoUser.wordbooks.id(wordbookId).deleteOne();
-    // 3. 保存更新后的 User 数据
+    // 保存更新后的 User 数据
     await todoUser.save();
-    // 4. 删除 Wordbook 本身
+    //  删除 Wordbook 本身
     await Wordbook.findById(wordbookId).deleteOne();
 
     res.status(200).redirect("/wordbooks");
@@ -209,7 +209,7 @@ router.delete("/:wordbookId/:wordId", async (req, res) => {
   session.startTransaction();
 
   try {
-    // Step 1: 从 Wordbook 中删除对应的 wordId 引用
+    // 从 Wordbook 中删除对应的 wordId 引用
     const wordbook = await Wordbook.findById(wordbookId).session(session);
     if (!wordbook) {
       throw new Error("Wordbook not found");
@@ -219,7 +219,7 @@ router.delete("/:wordbookId/:wordId", async (req, res) => {
     wordbook.words.pull(wordId);
     await wordbook.save({ session });
 
-    // Step 2: 删除 Word 表中对应的单词
+    // 删除 Word 表中对应的单词
     const word = await Word.findById(wordId).session(session);
     if (!word) {
       throw new Error("Word not found");
@@ -227,7 +227,7 @@ router.delete("/:wordbookId/:wordId", async (req, res) => {
 
     await word.deleteOne({ session });
 
-    // Step 3: 更新 User 表，移除已删除的 wordbook 中的 wordId
+    // 更新 User 表，移除已删除的 wordbook 中的 wordId
     const user = await User.findById(_id).session(session);
     if (user) {
       const wordbookIndex = user.wordbooks.findIndex(wb => wb._id.toString() === wordbookId);
