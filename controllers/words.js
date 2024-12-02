@@ -23,15 +23,13 @@ router.post("/", async (req, res) => {
     // 创建新的 Word 并保存
     const newWord = new Word({
       name: req.body.name,
-      favorite: 0,
     });
 
     // 在事务中保存新单词
     await newWord.save({ session });
 
-    // 更新 wordbook，添加新单词并更新 wordAmount
+    // 更新 wordbook
     wordbook.words.push(newWord._id);
-    wordbook.wordAmount += 1;
     await wordbook.save({ session });
 
     // 更新新单词的 wordbooks 数组，关联到 wordbook
@@ -41,7 +39,7 @@ router.post("/", async (req, res) => {
     // 确保 user 的 wordbooks 数组更新
     const wordbookIndex = user.wordbooks.findIndex(wb => wb._id.toString() === wordbook._id.toString());
     if (wordbookIndex !== -1) {
-      // 如果 `wordbook` 存在，更新其中的 `words` 和 `wordAmount`
+      // 如果 `wordbook` 存在，更新其中的 `words` 
       user.wordbooks[wordbookIndex] = wordbook;  // 更新 wordbook
     } else {
       // 如果 `wordbook` 不在 `user.wordbooks` 中，可以选择将其添加

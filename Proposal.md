@@ -10,11 +10,16 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 
 **Initial Landing View**
 
-![image]()
+![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/utils/imgs/img1.png)
+
+![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/utils/imgs/img4.png)
 
 **Results View**
 
-![image]()
+
+![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/utils/imgs/img2.png)
+
+![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/utils/imgs/img3.png)
 
 ## User Stories
 

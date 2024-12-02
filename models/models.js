@@ -3,11 +3,6 @@ import mongoose from 'mongoose';
 
 // Wordbook Schema  contains many words - 包含多个 Word 
 const wordbookSchema = mongoose.Schema({
-  wordAmount: {
-    type: Number,
-    required: true,
-    default:0
-  },
   category: {
     type: String,
     required: true,
@@ -37,11 +32,6 @@ const wordSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
-  },
-  favorite: {
-    type: Number,
-    required: true,
-    default:0
   },
   wordbooks:[{
     type:mongoose.Schema.Types.ObjectId,

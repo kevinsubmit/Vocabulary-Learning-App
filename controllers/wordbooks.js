@@ -53,7 +53,6 @@ router.post("/", async (req, res) => {
 
     //Create a new Wordbook
     const wordbook = new Wordbook({
-      wordAmount: 0,
       category: wordbookName,
       words: [],
     });
@@ -177,7 +176,7 @@ router.get("/:wordbookId/list", async (req, res) => {
 
     // 获取当前页码，默认为第1页
     const page = parseInt(req.query.page) || 1;
-    const pageSize = 1; // 每页展示20个单词
+    const pageSize = 5; // 每页展示20个单词
     const skip = (page - 1) * pageSize; // 跳过的记录数
 
     // 获取当前页的 wordbook.words 数组切片
