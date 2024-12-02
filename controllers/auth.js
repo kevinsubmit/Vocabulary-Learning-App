@@ -32,9 +32,9 @@ router.post('/register', async (req, res) => {
     }
 
     // Validate the password
-    // if (!/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/.test(req.body.password)) {
-    //   throw new Error("Provide one upper and one lower case letter, one number, and one special character")
-    // }
+    if (!/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/.test(req.body.password)) {
+      throw new Error("Provide one upper and one lower case letter, one number, and one special character")
+    }
   
     // Must hash the password before sending to the database
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
