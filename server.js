@@ -2,6 +2,10 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 const app = express();
+
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 import mongoose from "mongoose";
 import methodOverride from "method-override";
 import morgan from "morgan";
@@ -22,6 +26,11 @@ mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
+// get the present file path
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));

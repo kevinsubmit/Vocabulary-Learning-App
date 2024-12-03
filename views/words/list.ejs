@@ -4,78 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Word list</title>
+    <link rel="stylesheet" href="/css/words/list.css">
   </head>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      height: 100vh;
-      background-color: #f0f0f0;
-      padding-top: 20px;
-      padding: 20px 10px 0 10px;
-      box-sizing: border-box;
-      background-color: #202d38;
-    }
-    #word {
-      width: 100%;
-      background-color: #202d38;
-      color: white;
-      box-sizing: border-box;
-    }
-    #word h3 {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-    #word .list {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      height: 40px;
-      background-color: rgba(0, 0, 0, 0.3);
-    }
-    #word li {
-      list-style-type: none;
-      height: 30px;
-      font-size: 16px;
-      margin-bottom: 10px;
-      background-color: rgba(0, 0, 0, 0.3);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .pagination {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
-    .word-list button {
-      outline: none;
-      border: none;
-      color: #007bff;
-      background: transparent;
-      font-size: 16px;
-    }
-    .pagination a {
-      color: white;
-      padding: 10px;
-      text-decoration: none;
-      background-color: #007bff;
-      border-radius: 5px;
-      margin: 0 5px;
-    }
-    .pagination a.disabled {
-      background-color: #555;
-      pointer-events: none;
-    }
-    .pagination a.active {
-      background-color: #0056b3;
-    }
-  </style>
-
   <body>
     <%- include('../partials/_navbar.ejs') %>
     <div id="word">

@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  background-color: #f0f0f0;
+  padding-top: 20px;
+  box-sizing: border-box;
+  background-color: #202d38;
+}
+.search-area {
+  height: 100%;
+}
+.search-area .input-area {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+}
+.search-area .input-area p {
+  background-color: #283540;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 77%;
+  border-radius: 10px;
+  padding-left: 5px;
+}
+.search-area .input-area p input {
+  width: 80%;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  caret-color: #007bff;
+  padding-left: 5px;
+  font-size: 14px;
+}
+.search-area .input-area button {
+  width: 64px;
+  height: 25px;
+  background-color: #007bff;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  color: white;
+}
+.search-area #contain-area {
+  height: 40px;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 0 5px;
+}
+.search-area #display {
+  color: #007bff;
+  font-size: 16px;
+}
+
+#overlay {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  text-align: center;
+
+  box-sizing: border-box;
+  z-index: 1000;
+}
+#overlay .list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+#overlay .list p {
+  display: flex;
+  align-items: center;
+}
+.wordbooks-list a {
+  color: #007bff;
+}
+.wordbooks-list span {
+  margin-left: 5px;
+}
+.overlay-contain {
+  position: fixed;
+  width: 100%;
+  height: 45%;
+  bottom: 0px;
+  left: 0px;
+  background-color: #202d38;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.close-btn {
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}

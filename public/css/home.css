@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+/* 全局样式 */
+body {
+  background-color: #202d38; /* 背景颜色 */
+  font-family: "Arial", sans-serif; /* 字体 */
+  color: #fff; /* 文字颜色 */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 居中内容 */
+  box-sizing: border-box;
+}
+
+/* 容器样式 */
+.container {
+  position: relative; /* 相对定位容器，为子元素提供定位参考 */
+  width: 80%; /* 容器宽度 */
+  max-width: 600px; /* 最大宽度 */
+  text-align: center; /* 文字居中 */
+}
+
+/* 浮动的文字样式 */
+.encouraging-text {
+  font-size: 22px; /* 字体大小 */
+  font-weight: bold; /* 加粗 */
+  line-height: 1.5; /* 行高 */
+  opacity: 0.9; /* 透明度 */
+  position: absolute; /* 定位文本 */
+  left: 50%; /* 水平居中 */
+  transform: translateX(-50%); /* 精确水平居中 */
+  animation-duration: 6s; /* 动画持续时间 */
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite; /* 无限循环动画 */
+}
+
+/* 第一个文案：浮动效果向上 */
+.top-text {
+  top: 10%; /* 距离顶部10% */
+  animation-name: floatUp; /* 上浮动画 */
+}
+
+/* 第二个文案：浮动效果向下 */
+.bottom-text {
+  bottom: 10%; /* 距离底部10% */
+  animation-name: floatDown; /* 下浮动画 */
+}
+
+/* 上浮动画 */
+@keyframes floatUp {
+  0% {
+    transform: translate(-50%, 0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -100px); /* 向上浮动30px */
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 0;
+  }
+}
+
+/* 下浮动画 */
+@keyframes floatDown {
+  0% {
+    transform: translate(-50%, 0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, 100px); /* 向下浮动30px */
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 0;
+  }
+}
+
+/* 响应式设计：小屏幕时调整文本大小 */
+@media screen and (max-width: 768px) {
+  .encouraging-text {
+    font-size: 18px;
+  }
+
+  .container {
+    width: 90%;
+  }
+}

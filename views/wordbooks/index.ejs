@@ -4,57 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My wordbooks</title>
+    <link rel="stylesheet" href="/css/wordbooks/index.css">
   </head>
-  <style>
-    * {
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        font-family: Arial, sans-serif;
-        height: 100vh;
-        background-color: #f0f0f0;
-        padding-top: 20px;
-        padding: 20px 10px 0 10px;
-        box-sizing: border-box;
-        background-color: #202d38;
-      }
-    #wordbooks {
-      width: 100%;
-      background-color: #202d38;
-      color: white;
-      box-sizing: border-box;
-    }
-    #wordbooks h3{
-      text-align: center;
-      margin-bottom: 10px;
-    }
-    #wordbooks .list {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      height: 40px;
-      background-color: rgba(0, 0, 0, 0.3);
-    }
-    #wordbooks button{
-    outline: none;
-    border: none;
-    color: #007bff;
-    background: transparent;
-    font-size: 16px;
-    }
-    #wordbooks a{
-    color: #007bff; 
-    }
-    .todo-button{
-      display: flex;
-      width: 40%;
-      justify-content: space-between;
-      align-items: center;
-    }
- 
-  </style>
   <body>
     <%- include('../partials/_navbar.ejs') %>
     <div id="wordbooks">
