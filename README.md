@@ -10,7 +10,7 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 [Deployed URL](https://vocabulary-learning-app-97239a073f2c.herokuapp.com/)
 [GitHub URL](https://github.com/kevinsubmit/Vocabulary-Learning-App/)
 
-**Initial Landing View**
+**Login View**
 
 ![image](./public/imgs/img1.png)
 
@@ -69,7 +69,7 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 
 ### Deal Words Routes:
 |  Action    |             Route                    | HTTP Verb  |
-|------------|---------------------------------------------------|
+|------------|--------------------------------------|------------|
 |  Search    |   ‘/words’                           |  POST(api) |  
 |  Collect   |   ‘/words/:wordbookId'               |  POST      |
 |  Collect   |   ‘/words/:wordId'                   |  GET       |
