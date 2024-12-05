@@ -14,10 +14,11 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 
 ![image](./public/imgs/img1.png)
 
+**Home View**
+
 ![image](./public/imgs/img4.png)
 
 **Results View**
-
 
 ![image](./public/imgs/img2.png)
 
@@ -55,7 +56,7 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 |  Logout    |   ‘/auth/logout'                                   |    POST    | 
  
 
-### Deal Routes:
+### Deal Wordbook Routes:
 |  Action    |             Route              | HTTP Verb|
 |------------|--------------------------------|----------|
 |  Index     |   ‘/wordbooks’                 |  GET     |
@@ -66,7 +67,7 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 |  Update    |   ‘/wordbooks/:wordbookId’     |  PUT     |                       
 |  Delete    |   ‘/wordbooks/:wordbookId’     |  DELETE  |  
 
-
+### Deal Words Routes:
 |  Action    |             Route                    | HTTP Verb  |
 |------------|---------------------------------------------------|
 |  Search    |   ‘/words’                           |  POST(api) |  
