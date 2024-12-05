@@ -1,25 +1,27 @@
-# Project Proposal
+# Vocabulary Learning App
 
-## Project Choice 
+## Project Description
 
-- [ ] Vocabulary Learning App
-
-## Project Description 
 
 An English Vocabulary Learning App is designed to help users expand and improve their English vocabulary in an engaging and effective way
 
+## Interact Here
+
+[Deployed URL](https://vocabulary-learning-app-97239a073f2c.herokuapp.com/)
+[GitHub URL](https://github.com/kevinsubmit/Vocabulary-Learning-App/)
+
 **Initial Landing View**
 
-![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/public/imgs/img1.png)
+![image](./public/imgs/img1.png)
 
-![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/public/imgs/img4.png)
+![image](./public/imgs/img4.png)
 
 **Results View**
 
 
-![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/public/imgs/img2.png)
+![image](./public/imgs/img2.png)
 
-![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/public/imgs/img3.png)
+![image](./public/imgs/img3.png)
 
 ## User Stories
 
@@ -33,24 +35,27 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 
 #### Stretch Goals
 
-- As a user, you can have many background themes for choosing
+- As a user, you can have many background themes for choosing.
+- As a user, you can translate different languages.
 
-## Data modeling and ERD
+## ERD
 
-![image](https://github.com/kevinsubmit/Vocabulary-Learning-App/blob/main/public/imgs/erd.png)
+![image](./public/imgs/erd.png)
 
-## RESTful routes for managing data
+## Restful Routes
+#### Sign-Up Sign-In Sign-Out Routes
 
 |  Action    |             Route                                  | HTTP Verb  | 
 |------------|----------------------------------------------------|------------|
-|  login  |   ‘/login’                                      |    GET     |  
-|  login  |   ‘/auth/login’                                 |    POST    |
+|  login     |   ‘/login’                                         |    GET     |  
+|  login     |   ‘/auth/login’                                    |    POST    |
 |  Login     |   ‘/login’                                         |    GET     |  
-|  Login     |   ‘/auth/login’                                 |    POST    |  
+|  Login     |   ‘/auth/login’                                    |    POST    |  
 |  Logout    |   ‘/login’                                         |    GET     | 
 |  Logout    |   ‘/auth/logout'                                   |    POST    | 
  
 
+#### Sign-Up Sign-In Sign-Out Routes
 |  Action    |             Route              | HTTP Verb|
 |------------|--------------------------------|----------|
 |  Index     |   ‘/wordbooks’                 |  GET     |
