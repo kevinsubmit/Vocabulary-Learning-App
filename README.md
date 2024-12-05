@@ -43,7 +43,7 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 ![image](./public/imgs/erd.png)
 
 ## Restful Routes
-#### Sign-Up Sign-In Sign-Out Routes
+### Sign-Up Sign-In Sign-Out Routes
 
 |  Action    |             Route                                  | HTTP Verb  | 
 |------------|----------------------------------------------------|------------|
@@ -55,7 +55,7 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 |  Logout    |   ‘/auth/logout'                                   |    POST    | 
  
 
-#### Sign-Up Sign-In Sign-Out Routes
+### Deal Routes:
 |  Action    |             Route              | HTTP Verb|
 |------------|--------------------------------|----------|
 |  Index     |   ‘/wordbooks’                 |  GET     |
@@ -67,26 +67,17 @@ An English Vocabulary Learning App is designed to help users expand and improve 
 |  Delete    |   ‘/wordbooks/:wordbookId’     |  DELETE  |  
 
 
-|  Action    |             Route                                  | HTTP Verb  |           Note  |
-|------------|----------------------------------------------------|------------|-----------------|
-|  Search    |   ‘/words’                           |  POST(api) |  (这个页面不带收藏标志的)         |
-|  Collect   |   ‘/words/:wordbookId'               |  POST      |  (这个时候往数据库生成这个wordId) |
-|  Collect   |   ‘/words/:wordId'                   |  GET       |  (这个页面是带收藏标志的)         |
-|  Remove    |   ‘/words/:wordId/wordbookId/remove’ |  DELETE    |                               |
+|  Action    |             Route                    | HTTP Verb  |
+|------------|---------------------------------------------------|
+|  Search    |   ‘/words’                           |  POST(api) |  
+|  Collect   |   ‘/words/:wordbookId'               |  POST      |
+|  Collect   |   ‘/words/:wordId'                   |  GET       |
+|  Remove    |   ‘/words/:wordId/wordbookId/remove’ |  DELETE    |
 
 
 
-#### Notionboard Template
-Notionboard template for building projects ( You can use this for any project )
-https://www.notion.so/GA-Unit-3-Tunr-Lab-da2c82fafd4e4a7aa654676732db9ee3
+### Timeline
 
-#### Timeline - Daily Accountability
-Example of a Timeline to keep organized and on task for hitting goals every single day you’re on the sprint for your project.
-
-Create your own table using this markdown table generator website:
-https://www.tablesgenerator.com/markdown_tables
-
-Do not neglect to plan, you will thank yourself later for being proactive!
 
 | Day        |   | Task                               | Blockers | Notes/ Thoughts |
 |------------|---|------------------------------------|----------|-----------------|
